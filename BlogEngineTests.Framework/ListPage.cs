@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using System.Configuration;
+using OpenQA.Selenium;
 
 namespace BlogEngineTests.Framework
 {
@@ -6,7 +7,8 @@ namespace BlogEngineTests.Framework
     {
         public static void GoTo()
         {
-            Driver.Instance.Navigate().GoToUrl("http://localhost:63129/admin/#/content/pages");
+            Driver.Instance.Navigate().GoToUrl(ConfigurationManager.AppSettings["BaseAddress"] + "/admin/#/content/pages");
+            Driver.WaitOneSecond();
         }
 
         public static void AddNewPage()
@@ -21,7 +23,7 @@ namespace BlogEngineTests.Framework
 
         public static void SearchNewPage(string title)
         {
-           Driver.Instance.FindElement(By.XPath("//input[@ng-change='search()']")).SendKeys(title);
+            Driver.Instance.FindElement(By.XPath("//input[@ng-change='search()']")).SendKeys(title);
         }
 
         public static void GoToHomePage()
@@ -60,6 +62,7 @@ namespace BlogEngineTests.Framework
 
         public void Save()
         {
+            Driver.WaitOneSecond();
             Driver.Instance.FindElement(By.Id("txtTitle")).SendKeys(_title);
             Driver.Instance.FindElement(By.Id("editor")).SendKeys(_body);
             Driver.Instance.FindElement(By.XPath("//a[@data-ng-click='save()']")).Click();

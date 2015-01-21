@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using OpenQA.Selenium;
 
 namespace BlogEngineTests.Framework
@@ -12,7 +13,8 @@ namespace BlogEngineTests.Framework
 
         public static void GoTo()
         {
-            Driver.Instance.Navigate().GoToUrl("http://localhost:63129/admin/#/blogs");
+            Driver.Instance.Navigate().GoToUrl(ConfigurationManager.AppSettings["BaseAddress"] + "/admin/#/blogs");
+            Driver.WaitOneSecond();
         }
         public static void AddNew()
         {
@@ -40,6 +42,7 @@ namespace BlogEngineTests.Framework
         {
             var element = Driver.Instance.FindElement(By.XPath("//a[@class='external-link pull-right']"));
             Driver.ClickElementWithAction(element);
+            Driver.WaitOneSecond();
         }
 
         public static bool IsBlogInTheList(string name)

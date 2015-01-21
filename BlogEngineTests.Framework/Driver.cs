@@ -2,7 +2,7 @@
 using System.Configuration;
 using System.Threading;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 
 namespace BlogEngineTests.Framework
 {
@@ -13,13 +13,16 @@ namespace BlogEngineTests.Framework
 
         public static object BaseAddress
         {
-            get { return ConfigurationManager.AppSettings["BaseAddress"]; }
+            get
+            {
+                return ConfigurationManager.AppSettings["BaseAddress"];
+            }
         }
 
         public static void Initialize()
         {
-            //Instance = new FirefoxDriver();
-            Instance = new ChromeDriver(@"D:\proj\driver\");
+            Instance = new FirefoxDriver();
+            //Instance = new ChromeDriver(@"D:\proj\driver\");
             Instance.Manage().Window.Maximize();
             _windowHandle = Instance.CurrentWindowHandle;
         }

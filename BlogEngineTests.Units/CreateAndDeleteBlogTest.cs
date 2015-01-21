@@ -29,7 +29,6 @@ namespace BlogEngineTests.Units
             Driver.SwitchToOriginalWindow();
 
             BlogsPage.GoTo();
-            BlogsPage.SearchBlog(name);
             BlogsPage.DeleteBlog();
 
             Assert.IsFalse(BlogsPage.IsBlogInTheList(name));

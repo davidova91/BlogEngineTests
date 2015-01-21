@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Configuration;
 using OpenQA.Selenium;
 
 namespace BlogEngineTests.Framework
@@ -7,7 +7,7 @@ namespace BlogEngineTests.Framework
     {
         public static void GoTo()
         {
-            Driver.Instance.Navigate().GoToUrl("http://localhost:63129/admin/#/users");
+            Driver.Instance.Navigate().GoToUrl(ConfigurationManager.AppSettings["BaseAddress"] + "/admin/#/users");
             Driver.WaitOneSecond();
         }
 
