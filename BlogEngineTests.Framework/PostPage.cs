@@ -77,7 +77,8 @@ namespace BlogEngineTests.Framework
 
         public void Save()
         {
-           Driver.Instance.FindElement(By.XPath("//a[@ng-click='save()']")).Click();
+            Driver.WaitOneSecond();
+            Driver.Instance.FindElement(By.XPath("//a[@ng-click='save()']")).Click();
         }
     }
 }
